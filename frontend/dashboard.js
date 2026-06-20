@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:8000/api/asteroids';
+const API_BASE = 'https://asteroidwatch-production.up.railway.app/api/asteroids';
 
 let state = {
     asteroidsByDate: {},
