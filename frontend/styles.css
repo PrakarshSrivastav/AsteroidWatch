@@ -1,0 +1,729 @@
+:root {
+    --font-primary: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', Courier, monospace;
+
+    --color-bg-body: #05070f;
+    --color-bg-panel: #0a0e1a;
+    --color-bg-card: #0d1326;
+    
+    --color-border: #161f38;
+    --color-border-active: #2a3a60;
+    
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #94a3b8;
+    --color-text-muted: #475569;
+
+    --color-green: #10b981;
+    --color-cyan: #06b6d4;
+    --color-yellow: #f59e0b;
+    --color-orange: #f97316;
+    --color-red: #ef4444;
+
+    --transition-terminal: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-bg-body);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    font-weight: 300;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-bg-body);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-border-active);
+}
+
+.stars-overlay {
+    display: none;
+}
+
+.main-header {
+    background-color: var(--color-bg-panel);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.8rem 1.5rem;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.logo-icon {
+    font-size: 1.6rem;
+    color: var(--color-cyan);
+}
+
+.brand h1 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.brand h1 span {
+    color: var(--color-text-primary);
+}
+
+.sub-brand {
+    font-size: 0.65rem;
+    font-weight: 500;
+    font-family: var(--font-mono);
+    letter-spacing: 2px;
+    color: var(--color-text-muted);
+}
+
+.control-panel {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.glass {
+    background: var(--color-bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.date-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    letter-spacing: 2px;
+    margin-bottom: 0.15rem;
+}
+
+.input-group input[type="date"] {
+    background: var(--color-bg-body);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    color: var(--color-text-primary);
+    padding: 0.35rem 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    transition: var(--transition-terminal);
+}
+
+.input-group input[type="date"]:focus {
+    border-color: var(--color-cyan);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn {
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    padding: 0.45rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: var(--transition-terminal);
+}
+
+.btn-primary {
+    background-color: var(--color-cyan);
+    color: var(--color-bg-body);
+    border-color: var(--color-cyan);
+}
+
+.btn-primary:hover {
+    background-color: #0891b2;
+    border-color: #0891b2;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-text-secondary);
+}
+
+.btn-secondary:hover {
+    border-color: var(--color-orange);
+    color: var(--color-orange);
+}
+
+.dashboard-container {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    flex-grow: 1;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.8rem;
+}
+
+.stat-card {
+    padding: 1rem 1.2rem;
+    border-radius: 2px;
+    border-left: 2px solid var(--color-border) !important;
+}
+
+.stat-card.border-cyan { border-left-color: var(--color-cyan) !important; }
+.stat-card.border-orange { border-left-color: var(--color-orange) !important; }
+.stat-card.border-red { border-left-color: var(--color-red) !important; }
+.stat-card.border-purple { border-left-color: #a855f7 !important; }
+
+.stat-card:hover {
+    border-color: var(--color-border-active);
+}
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.2rem;
+}
+
+.stat-title {
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    letter-spacing: 2px;
+}
+
+.stat-icon {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-family: var(--font-mono);
+    line-height: 1.2;
+}
+
+.stat-desc {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.5px;
+}
+
+.text-cyan { color: var(--color-cyan); }
+.text-orange { color: var(--color-orange); }
+.text-red { color: var(--color-red); }
+
+.workspace-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 1rem;
+    flex-grow: 1;
+}
+
+@media (max-width: 992px) {
+    .workspace-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.asteroid-list-section {
+    padding: 1.2rem;
+    border-radius: 2px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
+}
+
+.section-header h2 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.sort-selector label {
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    letter-spacing: 1px;
+}
+
+.glass-select {
+    background: var(--color-bg-body);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+}
+
+.asteroid-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    max-height: 620px;
+    overflow-y: auto;
+}
+
+.asteroid-card {
+    background: var(--color-bg-body);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-text-muted);
+    border-radius: 2px;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition-terminal);
+}
+
+.asteroid-card:hover {
+    background: var(--color-bg-card);
+    border-color: var(--color-border-active);
+}
+
+.asteroid-card.selected {
+    background: var(--color-bg-card);
+    border-color: var(--color-cyan);
+}
+
+.asteroid-card.minimal { border-left-color: var(--color-green); }
+.asteroid-card.low { border-left-color: var(--color-cyan); }
+.asteroid-card.moderate { border-left-color: var(--color-yellow); }
+.asteroid-card.high { border-left-color: var(--color-orange); }
+.asteroid-card.critical { border-left-color: var(--color-red); }
+
+.card-details-left {
+    flex-grow: 1;
+}
+
+.ast-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: var(--font-mono);
+}
+
+.ast-sub-telemetry {
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    color: var(--color-text-muted);
+    letter-spacing: 1px;
+    margin-top: 0.1rem;
+    display: flex;
+    gap: 1.2rem;
+}
+
+.card-details-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.badge {
+    padding: 0.15rem 0.4rem;
+    border-radius: 1px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    position: relative;
+    cursor: help;
+}
+
+.badge[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 145%;
+    left: 50%;
+    transform: translateX(-50%) translateY(3px) scale(0.95);
+    background-color: var(--color-bg-card);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0px;
+    padding: 0.35rem 0.6rem;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s ease, transform 0.1s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.badge[data-tooltip]::before {
+    content: '';
+    position: absolute;
+    bottom: 115%;
+    left: 50%;
+    transform: translateX(-50%) translateY(2px);
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--color-border) transparent transparent transparent;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s ease;
+    z-index: 1000;
+}
+
+.badge[data-tooltip]:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.badge[data-tooltip]:hover::before {
+    opacity: 1;
+}
+
+.badge-minimal { background: rgba(16, 185, 129, 0.1); color: var(--color-green); border: 1px solid rgba(16, 185, 129, 0.2); }
+.badge-low { background: rgba(6, 182, 212, 0.1); color: var(--color-cyan); border: 1px solid rgba(6, 182, 212, 0.2); }
+.badge-moderate { background: rgba(245, 158, 11, 0.1); color: var(--color-yellow); border: 1px solid rgba(245, 158, 11, 0.2); }
+.badge-high { background: rgba(249, 115, 22, 0.1); color: var(--color-orange); border: 1px solid rgba(249, 115, 22, 0.2); }
+.badge-critical { background: rgba(239, 68, 68, 0.1); color: var(--color-red); border: 1px solid rgba(239, 68, 68, 0.2); }
+
+.risk-score-text {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    letter-spacing: 1px;
+}
+
+.telemetry-inspector-section {
+    padding: 2rem;
+    border-radius: 2px;
+    background-color: var(--color-bg-body);
+    border: 1px solid var(--color-border);
+    max-height: 720px;
+    overflow-y: auto;
+}
+
+.inspector-empty {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--color-text-muted);
+}
+
+.inspector-empty i {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+    color: var(--color-border);
+}
+
+.inspector-empty h3 {
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.4rem;
+}
+
+.inspector-empty p {
+    font-size: 0.75rem;
+    max-width: 250px;
+}
+
+.inspector-header {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+
+.inspector-title-area h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-family: var(--font-mono);
+    margin-bottom: 0.2rem;
+}
+
+.ast-id {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    letter-spacing: 1.5px;
+}
+
+.danger-box {
+    margin-top: 0.4rem;
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.danger-box .hazard-badge-nasa {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+}
+
+.danger-box .hazard-badge-nasa.hazardous {
+    border-color: var(--color-orange);
+    color: var(--color-orange);
+}
+
+.risk-description-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+.risk-description-card.minimal { border-left: 2px solid var(--color-green); }
+.risk-description-card.low { border-left: 2px solid var(--color-cyan); }
+.risk-description-card.moderate { border-left: 2px solid var(--color-yellow); }
+.risk-description-card.high { border-left: 2px solid var(--color-orange); }
+.risk-description-card.critical { border-left: 2px solid var(--color-red); }
+
+.risk-description-card i {
+    display: none;
+}
+
+.risk-description-card h4 {
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+    color: var(--color-text-secondary);
+}
+
+.risk-description-card p {
+    font-size: 0.8rem;
+    color: var(--color-text-primary);
+    line-height: 1.5;
+}
+
+.telemetry-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1.2rem;
+}
+
+.telemetry-item {
+    background: transparent;
+    padding: 0;
+    border: none;
+}
+
+.telemetry-label {
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 0.2rem;
+}
+
+.telemetry-value {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.physics-container {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.physics-container h3 {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.4rem;
+}
+
+.physics-scores-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.physics-score-item {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.physics-score-label {
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+
+.physics-score-bar-bg {
+    height: 2px;
+    background: var(--color-border);
+    margin-top: 0.3rem;
+    margin-bottom: 0.2rem;
+    overflow: hidden;
+}
+
+.physics-score-bar-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 0.5s ease-out;
+}
+
+.bg-cyan { background-color: var(--color-cyan); }
+.bg-orange { background-color: var(--color-orange); }
+
+.physics-score-text {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.physics-details-extended {
+    border-top: 1px solid var(--color-border);
+    padding-top: 0.8rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+}
+
+.physics-details-extended div {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed rgba(22, 31, 56, 0.5);
+    padding-bottom: 0.2rem;
+}
+
+.physics-details-extended div span:first-child {
+    color: var(--color-text-muted);
+}
+
+.physics-details-extended div span:last-child {
+    color: var(--color-text-primary);
+}
+
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem;
+    gap: 1rem;
+}
+
+.radar {
+    display: none;
+}
+
+.loader-text {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-cyan);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: blink-text 1.5s infinite ease-in-out;
+}
+
+@keyframes blink-text {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+
+.main-footer {
+    background-color: var(--color-bg-panel);
+    border-top: 1px solid var(--color-border);
+    padding: 0.8rem 1.5rem;
+    text-align: center;
+}
+
+.main-footer p {
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    color: var(--color-text-muted);
+    letter-spacing: 0.5px;
+}
+
+.toast-flat {
+    background: var(--color-bg-card) !important;
+    border: 1px solid var(--color-border) !important;
+    border-left: 3px solid var(--color-orange) !important;
+    font-family: var(--font-mono) !important;
+    border-radius: 2px !important;
+}
+
+.hide {
+    display: none !important;
+}

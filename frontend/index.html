@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Minimalist Asteroid Telemetry Monitoring Station and Orbital Risk Assessment Registry.">
+    <title>AsteroidWatch - Orbital Proximity Registry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="main-header glass">
+        <div class="header-container">
+            <div class="logo-area">
+                <div class="brand">
+                    <h1>ASTEROID<span>WATCH</span></h1>
+                    <span class="sub-brand">ORBITAL MONITORING REGISTRY</span>
+                </div>
+            </div>
+            
+            <div class="control-panel glass">
+                <div class="date-selector">
+                    <div class="input-group">
+                        <label for="start-date-input">START_DATE</label>
+                        <input type="date" id="start-date-input">
+                    </div>
+                    <div class="input-group">
+                        <label for="end-date-input">END_DATE</label>
+                        <input type="date" id="end-date-input">
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button id="update-btn" class="btn btn-primary" title="Update Telemetry">
+                        <span id="btn-text">SYNC_TELEMETRY</span>
+                    </button>
+                    <button id="sim-threat-btn" class="btn btn-secondary" title="Simulate Threat Data">
+                        SIM_THREAT
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <section class="stats-grid" aria-label="Registry Metrics">
+            <div class="stat-card glass border-cyan" id="stat-total-card">
+                <div class="stat-header">
+                    <span class="stat-title">TRACKED_OBJECTS</span>
+                </div>
+                <div class="stat-value" id="stat-total">0</div>
+                <div class="stat-desc">Orbital approaches inside tracking vector</div>
+            </div>
+            
+            <div class="stat-card glass border-orange" id="stat-hazard-card">
+                <div class="stat-header">
+                    <span class="stat-title">NASA_HAZARDS</span>
+                </div>
+                <div class="stat-value text-orange" id="stat-hazard">0</div>
+                <div class="stat-desc">Potentially hazardous classifications</div>
+            </div>
+            
+            <div class="stat-card glass border-red" id="stat-risk-card">
+                <div class="stat-header">
+                    <span class="stat-title">MAX_HAZARD_SCORE</span>
+                </div>
+                <div class="stat-value text-red" id="stat-max-score">0.0</div>
+                <div class="stat-desc" id="stat-max-name">NONE</div>
+            </div>
+            
+            <div class="stat-card glass border-purple" id="stat-speed-card">
+                <div class="stat-header">
+                    <span class="stat-title">AVERAGE_VELOCITY</span>
+                </div>
+                <div class="stat-value" id="stat-avg-speed">0</div>
+                <div class="stat-desc">Relative velocity in km/h</div>
+            </div>
+        </section>
+
+        <div class="workspace-grid">
+            <section class="asteroid-list-section glass" aria-label="Asteroid Registry">
+                <div class="section-header">
+                    <h2>MONITORED_CELESTIAL_BODIES</h2>
+                    <div class="sort-selector">
+                        <label for="sort-by">SORT_BY:</label>
+                        <select id="sort-by" class="glass-select">
+                            <option value="risk">HAZARD_SCORE</option>
+                            <option value="distance">PROXIMITY</option>
+                            <option value="size">DIAMETER</option>
+                            <option value="velocity">VELOCITY</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="loader" class="loader-container hide">
+                    <p class="loader-text">[ SWEEPING ORBITAL TELEMETRY VECTOR... ]</p>
+                </div>
+
+                <div id="no-data-msg" class="no-data-card glass hide">
+                    <h3>NO_DATA_LOGGED</h3>
+                    <p>Adjust tracking parameters and select sync to load data.</p>
+                </div>
+
+                <div id="asteroid-list" class="asteroid-cards-container">
+                </div>
+            </section>
+
+            <section class="telemetry-inspector-section" id="telemetry-inspector" aria-label="Detailed Asteroid Telemetry">
+                <div id="inspector-placeholder" class="inspector-empty">
+                    <h3>SYSTEM_READY</h3>
+                    <p>Select a registry entry to fetch deep radar telemetry and physics analysis.</p>
+                </div>
+                <div id="inspector-details" class="inspector-content hide">
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="main-footer glass">
+        <p>TELEMETRY BASE: NASA NEOWS ORBITAL FEED // SECURE TERMINAL CONNECTION LOGGED</p>
+    </footer>
+    
+    <script src="dashboard.js"></script>
+</body>
+</html>
